@@ -1,4 +1,4 @@
-let myName :string = 'kim';
+let myName :string = 'kim'
 // 형식에는 string, number, boolean, null, undefined, bigint, [], {} 등
 
 let myArr :string[] 
