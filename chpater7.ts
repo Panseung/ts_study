@@ -8,11 +8,11 @@ const myGirl :GirlFriend = {
 
 myGirl.name = '박'
 
-type readGirlFriend = {
+type ReadGirlFriend = {
   readonly name :string
 }
 
-const myReadGirl :readGirlFriend = {
+const myReadGirl :ReadGirlFriend = {
   name: '김'
 }
 

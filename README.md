@@ -140,3 +140,97 @@ myReadGirl.name = '박'  //에러 -> readonly인 속성을 변경하려고 시�
 typeScript에러는 에디터 & 터미널에서만 존재하며 이는 타입과 관련하여
 경고를 주기위한 용도의 에러
 
+
+
+#### #8 literal types
+
+```typescript
+let literalTest :123
+
+literalTest = 123
+literalTest = 456 //에러
+```
+
+type 뿐 아니라 값 자체를 정함
+
+```typescript
+let test : 1 | 2
+test = 1
+test = 2
+test = 3  //에러
+```
+
+위와 같이 들어올 수 있는 값들을 미리 정해줄 수 있는 장점
+
+```typescript
+const helloOrBye = function( x :'hello' | 'bye' ) :string {
+  return x
+}
+```
+
+x로 'hello' 또는 'bye' 만 가능
+
+const의 한계는 한가지 값만 반드시 들어가야 하는 반면에,
+Literal type은 들어갈 수 있는 값을 1개 이상 정할 수 있음
+
+
+
+
+
+#### #14 type vs interface
+
+```typescript
+interface Student {
+  name :string
+}
+
+interface Teacher {
+  name :string
+  age :number
+}
+
+interface Teacher2 extends Student {
+  age :number
+}
+
+
+let 학생 :Student = { name :'kim' }
+let 선생님 :Teacher = { name: 'kim', age: 20 }
+let 선생님2 :Teacher2 = { name: 'kim', age: 20 }
+
+
+type Animal = { name :string }
+type Cat = { age :number } & Animal  // intersection기능
+```
+
+interface는 extends 기능을 사용 가능
+
+type 도 &연산자로 같은 기능을 사용할 수는 있음
+
+( extends는 속성명이 중복되면 에러로 잡아주는 반면,
+ &로 속성을 합친 경우에는 속성명이 중복되어도 잡아주지 않음 )
+
+그럼 interface와 type 에는 무슨 차이가 있나?
+
+##### 차이점: interface(중복선언 가능) vs type(중복선언 불가능)
+
+```typescript
+interface InterfaceTest {
+  name :string
+}
+interface InterfaceTest {
+  age :number
+}
+// 위와 같이 중복 가능
+
+type TypeTest = {
+  name :string
+}
+
+type TypeTest = {
+  age :number
+}
+// type은 불가능
+```
+
+따라서 interface가 커스텀을 하기에 좀 더 용이함 ( 더 유연함 )
